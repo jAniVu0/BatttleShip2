@@ -6,18 +6,18 @@ int main() {
 
     bool maps[3][3][3] = {
         {
-            {0, 0, 0},
-            {0, 0, 0},
-            {0, 0, 0}
+            {0, 1, 0},
+            {1, 0, 0},
+            {0, 0, 1}
         },
         {
-            {0, 0, 0},
-            {0, 0, 0},
-            {0, 0, 0}
+            {1, 0, 0},
+            {0, 1, 0},
+            {1, 0, 0}
         },
         {
-            {0, 0, 0},
-            {0, 0, 0},
+            {0, 0, 1},
+            {1, 0, 1},
             {0, 0, 0}
         }
     };
@@ -40,18 +40,20 @@ int main() {
     cin >> choose_map;
     cout << "\n";
 
-    //Print user's map//
-
-    for (int i = 0; i < 3; i++) {
-        for (int ii = 0; ii < 3; ii++) {
-            cout << user_map[i][ii] << " ";
-        }
-    cout << '\n';
-    }
+    choose_map--;
 
     //Game mechanic//
 
     while (hits < 3)  {
+
+        //Print user's map//
+
+        for (int i = 0; i < 3; i++) {
+            for (int ii = 0; ii < 3; ii++) {
+                cout << user_map[i][ii] << " ";
+            }
+        cout << '\n';
+        }
 
         //Ask user to select target//
 
@@ -63,20 +65,34 @@ int main() {
         cin >> column;
         cout << "\n";
 
+        ///Subtract input///
+
+        row--;
+        column--;
+
         //Check if user hit the target//
 
-        if (maps[choose_map][row][column] = true) {
-            maps[choose_map][row][column] = false;
-            hits++;
-            cout << "Hit! " << 3 - hits << " left.";
+        char hit = 'X';
+        char miss = 'O';
+
+        if (user_map[choose_map][row][column] == hit || miss) {
+            cout << "You've already bombarded this area, please try again.\n";
         } else {
-            cout << "Miss! " << 3 - hits << " left.";
+            if (maps[choose_map][row][column] == true) {
+                maps[choose_map][row][column] = false;
+                user_map[choose_map][row][column] = hit;
+                hits++;
+                cout << "Hit! " << 3 - hits << " left.\n";
+            } else {
+                user_map[choose_map][row][column] = miss;
+                cout << "Miss! " << 3 - hits << " left.\n";
+            }
+            turns++;
         }
 
-        turns++;
     }
 
-    cout << "You win!\n" << "You used " << turns << " to complete the game!";
+    cout << "You win!\n" << "You used " << turns << " to complete the game!\n";
 
     return 0;
 }
