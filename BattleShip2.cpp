@@ -36,9 +36,11 @@ int main() {
 
     //Ask user to select a map//
 
-    cout << "Please select a map (1/2/3) :";
+    cout << "Please select a map (1/2/3) : ";
     cin >> choose_map;
     cout << "\n";
+
+    ///Subtract input///
 
     choose_map--;
 
@@ -55,6 +57,16 @@ int main() {
         cout << '\n';
         }
 
+        cout << '\n';
+
+        //Print system's map//
+
+        for (int i = 0; i < 3; i++) {
+            for (int ii = 0; ii < 3; ii++) {
+                cout << maps[choose_map][i][ii] << " ";
+            }
+        cout << '\n';
+        }
         //Ask user to select target//
 
         cout << '\n' << "Select a row :";
@@ -72,20 +84,17 @@ int main() {
 
         //Check if user hit the target//
 
-        char hit = 'X';
-        char miss = 'O';
+        string hit = "X";
+        string miss = "O";
 
         if (user_map[choose_map][row][column] == hit || miss) {
-            cout << "You've already bombarded this area, please try again.\n";
+            cout << "You already bomabaded this area, please try another one.\n";
         } else {
             if (maps[choose_map][row][column] == true) {
-                maps[choose_map][row][column] = false;
-                user_map[choose_map][row][column] = hit;
                 hits++;
-                cout << "Hit! " << 3 - hits << " left.\n";
+                cout << "Hit! " << 3 - hits << "left.\n";
             } else {
-                user_map[choose_map][row][column] = miss;
-                cout << "Miss! " << 3 - hits << " left.\n";
+                cout << "Miss! " << 3 - hits << "left.\n";
             }
             turns++;
         }
