@@ -22,10 +22,10 @@ int main() {
         }
     };
 
-    char user_map[3][3] = {
-        {'O', 'O', 'O'},
-        {'O', 'O', 'O'},
-        {'O', 'O', 'O'}
+    string user_map[3][3] = {
+        {"O", "O", "O"},
+        {"O", "O", "O"},
+        {"O", "O", "O"}
     };
 
     int row;
@@ -68,18 +68,17 @@ int main() {
         column--;
 
         //Hit Checker
-
-        if (user_map[row][column] == 'X') {
-            cout << "You already bomabaded this area, please try another one.\n";
-        } else if (user_map[row][column] == 'M') {
+        string hit = "X";
+        string miss = "M";
+        if (user_map[row][column] == hit || user_map[row][column] == miss) {
             cout << "You already bomabaded this area, please try another one.\n";
         } else {
             if (maps[choose_map][row][column] == true) {
-                user_map[row][column] = 'X';
+                user_map[row][column] = hit;
                 hits++;
                 cout << "Hit! " << 3 - hits << " left.\n";
             } else {
-                user_map[row][column] = 'M';
+                user_map[row][column] = miss;
                 cout << "Miss! " << 3 - hits << " left.\n";
             }
             turns++;
