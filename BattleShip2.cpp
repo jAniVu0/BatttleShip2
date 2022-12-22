@@ -70,7 +70,9 @@ int main() {
         //Hit Checker
         string hit = "X";
         string miss = "M";
-        if (user_map[row][column] == hit || user_map[row][column] == miss) {
+        bool hitCondition = (user_map[row][column]) == hit;
+        bool missCondition = user_map[row][column] == miss;
+        if (hitCondition || missCondition) {
             cout << "You already bomabaded this area, please try another one.\n";
         } else {
             if (maps[choose_map][row][column] == true) {
