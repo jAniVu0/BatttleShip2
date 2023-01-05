@@ -2,6 +2,9 @@
 #include <string>
 using namespace std;
 
+int hits = 0;
+int turns = 0;
+
 bool systemMap[3][3][3] = {
     {
         {0, 1, 0},
@@ -30,7 +33,8 @@ int mapInputSelection() {
     int chooseMap;
     cout << "Please select a map (1/2/3) : ";
     cin >> chooseMap;
-    return chooseMap--;
+    chooseMap--;
+    return chooseMap;
 }
 
 void printUserMap() {
@@ -47,17 +51,19 @@ int rowInputSelection() {
     int row;
     cout << "\nSelect a row :";
     cin >> row;
-    return row--;
+    row--;
+    return row;
 }
 
 int columnInputSelection() {
     int column;
     cout << "Select a column :";
     cin >> column;
-    return column--;
+    column--;
+    return column;
 }
 
-int gameMechanism(int chooseMap, int row, int column) {
+void userMapChecker(int chooseMap, int row, int column) {
     char hit = 'X';
     char miss = 'M';
 
@@ -80,18 +86,14 @@ int gameMechanism(int chooseMap, int row, int column) {
     }
 }
 
-int hits = 0;
-int turns = 0;
-
 int main() {
-
     int chooseMap = mapInputSelection();
-    printUserMap();
 
     while (hits < 3)  {
+        printUserMap();
         int row = rowInputSelection();
         int column = columnInputSelection();
-        gameMechanism(chooseMap, row, column);
+        userMapChecker(chooseMap, row, column);
     }
 
     cout << "\nYou win!\n" 
